@@ -25,7 +25,7 @@ SECRET_KEY = 'cmhh#t$9tx!kln2qe_03$2@e7)*y5-zytqw7f86&m*dmt1y1io'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['calidad.virusgaming.gg','www.calidad.virusgaming.gg','127.0.0.1']
+ALLOWED_HOSTS = ['calidad.virusgaming.gg','www.calidad.virusgaming.gg','127.0.0.1','localhost']
 
 
 # Application definition
