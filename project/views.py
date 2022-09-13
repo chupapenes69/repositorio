@@ -11,19 +11,21 @@ class Persona(object):
 
 def saludo(request):
 
-    p1=Persona("Juan", "Díaz")
+    p1=Persona("Profesor Juan", "Díaz")
     
     #nombre="Marco"
     #apellido="Padilla"
 
+    temas_curso=["Plantillas","Modelos","Formularios","Vista","Despliegue"]
+
     ahora=datetime.datetime.now()
 
-    doc_externo=open("plantillas/miplantilla.html")
+    doc_externo=open("templates/mytemplate.html")
     plt=Template(doc_externo.read())
 
     doc_externo.close()
 
-    ctx=Context({"nombre_persona":p1.nombre,"apellido_persona":p1.apellido,"comentario":"Este es un comentario","momento_actual":ahora})
+    ctx=Context({"nombre_persona":p1.nombre,"apellido_persona":p1.apellido,"comentario":"Este es un comentario","momento_actual":ahora,"temas":temas_curso})
 
     documento=plt.render(ctx)
 
