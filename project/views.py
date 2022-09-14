@@ -3,6 +3,7 @@ import datetime
 
 from django.template import Template, Context
 from django.template.loader import get_template
+from django.shortcuts import render
 
 class Persona(object):
 
@@ -25,15 +26,15 @@ def saludo(request):
     #plt=Template(doc_externo.read())
     #doc_externo.close()
 
-    doc_externo=get_template('mytemplate.html')
+    #doc_externo=get_template('mytemplate.html')
 
     #ctx=Context({"nombre_persona":p1.nombre,"apellido_persona":p1.apellido,"comentario":"Este es un comentario","momento_actual":ahora,"temas":temas_curso})
     #documento=doc_externo.render(ctx)
 
-    documento=doc_externo.render({"nombre_persona":p1.nombre,"apellido_persona":p1.apellido,"comentario":"Este es un comentario","momento_actual":ahora,"temas":temas_curso})
+    #documento=doc_externo.render({"nombre_persona":p1.nombre,"apellido_persona":p1.apellido,"comentario":"Este es un comentario","momento_actual":ahora,"temas":temas_curso})
 
-    return HttpResponse(documento)
-
+    return render(request,'mytemplate.html',{"nombre_persona":p1.nombre,"apellido_persona":p1.apellido,"comentario":"Este es un comentario","momento_actual":ahora,"temas":temas_curso})
+    
 def despedida(request):
     return HttpResponse("Chau")
 
