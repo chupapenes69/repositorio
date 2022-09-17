@@ -7,30 +7,51 @@ class tipo_competicion(models.Model):
     nombre=models.CharField(max_length=30)
     estado=models.BooleanField()
 
+    class Meta:
+        verbose_name_plural='tipo_competicion'
+
 class competicion(models.Model):
     competicion_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=50)
     pais_id=models.IntegerField()
     tipo_competicion_id=models.ForeignKey(tipo_competicion,on_delete=models.CASCADE, db_column='tipo_competicion_id')
 
+    class Meta:
+        verbose_name_plural='competicion'
+        
 class pais(models.Model):
     pais_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name_plural='pais'
 
 class deporte(models.Model):
     deporte_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=30)
     estado=models.BooleanField()
 
+    class Meta: 
+        verbose_name_plural='deporte'
+
 class grupo(models.Model):
     grupo_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=30)
+
+    class Meta: 
+        verbose_name_plural='grupo'
 
 class detalle_grupo(models.Model):
     detalle_grupo_id=models.BigAutoField(primary_key=True)
     equipo_id=models.ForeignKey("appEquipo.equipo",on_delete=models.CASCADE, db_column='equipo_id')
     grupo_id=models.ForeignKey(grupo,on_delete=models.CASCADE, db_column='grupo_id')
     competicion_id=models.ForeignKey(competicion,on_delete=models.CASCADE, db_column='competicion_id')
+
+    class Meta: 
+        verbose_name_plural='detalle_grupo'
 
 class tabla(models.Model):
     tabla_id=models.BigAutoField(primary_key=True)
@@ -44,5 +65,8 @@ class tabla(models.Model):
     tarjetas_amarillas=models.IntegerField()
     tarjetas_rojas=models.IntegerField()
     puntos=models.IntegerField()
+
+    class Meta: 
+        verbose_name_plural='tabla'
 
 

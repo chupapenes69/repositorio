@@ -7,6 +7,9 @@ class tipo_equipo(models.Model):
     descripcion=models.CharField(max_length=30)
     estado=models.BooleanField()
 
+    class Meta:
+        verbose_name_plural='tipo_equipo'
+
 class equipo(models.Model):
     equipo_id=models.BigAutoField(primary_key=True)
     logo=models.BinaryField(max_length=None)
@@ -18,9 +21,15 @@ class equipo(models.Model):
     deporte_id=models.ForeignKey("appCompeticion.deporte",on_delete=models.CASCADE,db_column='deporte_id')
     encuentro_id=models.ForeignKey("appPartido.encuentro",on_delete=models.CASCADE,db_column='encuentro_id')
 
+    class Meta:
+        verbose_name_plural='equipo'
+
 class posicion_jugador(models.Model):
     posicion_jugador_id=models.BigAutoField(primary_key=True)
     descripcion=models.CharField(max_length=30)
+
+    class Meta:
+        verbose_name_plural='posicion_jugador'
 
 class alineacion_equipo(models.Model):
     alineacion_equipo_id=models.BigAutoField(primary_key=True)
@@ -30,3 +39,6 @@ class alineacion_equipo(models.Model):
     capitan=models.BooleanField()
     estado=models.BooleanField()
     contrato_id=models.ForeignKey("appContrato.contrato",on_delete=models.CASCADE,db_column='contrato_id')
+
+    class Meta:
+        verbose_name_plural='posicion_jugador'

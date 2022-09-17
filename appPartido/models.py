@@ -5,11 +5,17 @@ from django.db import models
 class estado(models.Model):
     estado_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=30)
+    
+    class Meta:
+        verbose_name_plural='estado'
 
 class ciudad(models.Model):
     ciudad_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=30)
     norma=models.CharField(max_length=5)
+    
+    class Meta:
+        verbose_name_plural='ciudad'
 
 class sede(models.Model):
     sede_id=models.BigAutoField(primary_key=True)
@@ -18,6 +24,9 @@ class sede(models.Model):
     ciudad_id=models.ForeignKey(ciudad, on_delete=models.CASCADE,db_column='ciudad_id')
     estado_id=models.ForeignKey(estado, on_delete=models.CASCADE,db_column='estado_id')
     pais_id=models.ForeignKey("appCompeticion.pais",on_delete=models.CASCADE,db_column='pais_id')
+
+    class Meta:
+        verbose_name_plural='sede'
 
 class encuentro(models.Model):
     encuentro_id=models.BigAutoField(primary_key=True)
@@ -33,10 +42,16 @@ class encuentro(models.Model):
     clima=models.IntegerField()
     estado_jugado=models.BooleanField()
 
+    class Meta:
+        verbose_name_plural='encuentro'
+
 class evento(models.Model):
     evento_id=models.BigAutoField(primary_key=True)
     descripcion=models.CharField(max_length=30)
     estado=models.BooleanField()
+
+    class Meta:
+        verbose_name_plural='evento'
 
 class evento_persona(models.Model):
     encuentro_evento_id=models.BigAutoField(primary_key=True)
@@ -44,4 +59,7 @@ class evento_persona(models.Model):
     evento_id=models.ForeignKey(evento,on_delete=models.CASCADE,db_column='evento_id')
     persona_id=models.ForeignKey("appContrato.persona",on_delete=models.CASCADE,db_column='persona_id')
     tiempo=models.IntegerField()
+
+    class Meta:
+        verbose_name_plural='evento_persona'
 

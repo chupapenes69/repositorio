@@ -7,6 +7,9 @@ class tipo_persona(models.Model):
     descripcion=models.CharField(max_length=30)
     estado=models.BooleanField()
 
+    class Meta:
+        verbose_name_plural='tipo_persona'
+
 
 class persona(models.Model):
     persona_id=models.BigAutoField(primary_key=True)
@@ -21,6 +24,9 @@ class persona(models.Model):
     estado=models.BooleanField()
     tipo_persona_id=models.ForeignKey(tipo_persona,on_delete=models.CASCADE, db_column='tipo_persona_id')
 
+    class Meta:
+        verbose_name_plural='persona'
+
 class contrato(models.Model):
     contrato_id=models.BigAutoField(primary_key=True)
     fecha_inicio=models.DateField()
@@ -29,3 +35,6 @@ class contrato(models.Model):
     tipo_contrato=models.CharField(max_length=1)
     estado=models.BooleanField()
     persona_id=models.ForeignKey(persona,on_delete=models.CASCADE, db_column='persona_id')
+
+    class Meta:
+        verbose_name_plural='contrato'
