@@ -15,11 +15,11 @@ class persona(models.Model):
     alias=models.CharField(max_length=20)
     sexo=models.CharField(max_length=1)
     fecha_nacimiento=models.DateField()
-    pais_id=models.ForeignKey("appCompeticion.pais",on_delete=models.CASCADE)
+    pais_id=models.ForeignKey("appCompeticion.pais",on_delete=models.CASCADE, db_column='pais_id')
     estatura=models.FloatField()
     peso=models.FloatField()
     estado=models.BooleanField()
-    tipo_persona_id=models.ForeignKey(tipo_persona,on_delete=models.CASCADE)
+    tipo_persona_id=models.ForeignKey(tipo_persona,on_delete=models.CASCADE, db_column='tipo_persona_id')
 
 class contrato(models.Model):
     contrato_id=models.BigAutoField(primary_key=True)
@@ -28,4 +28,4 @@ class contrato(models.Model):
     valor=models.FloatField()
     tipo_contrato=models.CharField(max_length=1)
     estado=models.BooleanField()
-    persona_id=models.ForeignKey(persona,on_delete=models.CASCADE)
+    persona_id=models.ForeignKey(persona,on_delete=models.CASCADE, db_column='persona_id')

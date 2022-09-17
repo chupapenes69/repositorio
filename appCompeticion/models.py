@@ -11,7 +11,7 @@ class competicion(models.Model):
     competicion_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=50)
     pais_id=models.IntegerField()
-    tipo_competicion_id=models.ForeignKey(tipo_competicion,on_delete=models.CASCADE)
+    tipo_competicion_id=models.ForeignKey(tipo_competicion,on_delete=models.CASCADE, db_column='tipo_competicion_id')
 
 class pais(models.Model):
     pais_id=models.BigAutoField(primary_key=True)
@@ -28,14 +28,14 @@ class grupo(models.Model):
 
 class detalle_grupo(models.Model):
     detalle_grupo_id=models.BigAutoField(primary_key=True)
-    equipo_id=models.ForeignKey("appEquipo.equipo",on_delete=models.CASCADE)
-    grupo_id=models.ForeignKey(grupo,on_delete=models.CASCADE)
-    competicion_id=models.ForeignKey(competicion,on_delete=models.CASCADE)
+    equipo_id=models.ForeignKey("appEquipo.equipo",on_delete=models.CASCADE, db_column='equipo_id')
+    grupo_id=models.ForeignKey(grupo,on_delete=models.CASCADE, db_column='grupo_id')
+    competicion_id=models.ForeignKey(competicion,on_delete=models.CASCADE, db_column='competicion_id')
 
 class tabla(models.Model):
     tabla_id=models.BigAutoField(primary_key=True)
-    competicion_id=models.ForeignKey(competicion,on_delete=models.CASCADE)
-    equipo_id=models.ForeignKey("appEquipo.equipo",on_delete=models.CASCADE)
+    competicion_id=models.ForeignKey(competicion,on_delete=models.CASCADE, db_column='competicion_id')
+    equipo_id=models.ForeignKey("appEquipo.equipo",on_delete=models.CASCADE, db_column='equipo_id')
     ganado=models.IntegerField()
     perdido=models.IntegerField()
     empatado=models.IntegerField()
