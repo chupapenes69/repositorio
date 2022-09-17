@@ -24,7 +24,7 @@ class deporte(models.Model):
 
 class grupo(models.Model):
     grupo_id=models.BigAutoField(primary_key=True)
-    nombre=models.CharField()
+    nombre=models.CharField(max_length=30)
 
 class detalle_grupo(models.Model):
     detalle_grupo_id=models.BigAutoField(primary_key=True)
