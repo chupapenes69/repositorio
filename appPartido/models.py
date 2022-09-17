@@ -21,8 +21,8 @@ class sede(models.Model):
 
 class encuentro(models.Model):
     encuentro_id=models.BigAutoField(primary_key=True)
-    equipo_local_id=models.ForeignKey("appEquipo.equipo", on_delete=models.CASCADE)
-    equipo_local_visitante=models.ForeignKey("appEquipo.equipo", on_delete=models.CASCADE)
+    equipo_local_id=models.ForeignKey("appEquipo.equipo", on_delete=models.CASCADE, related_name='equipo_local_id')
+    equipo_visitante_id=models.ForeignKey("appEquipo.equipo", on_delete=models.CASCADE, related_name='equipo_visitante_id')
     resultado_general=models.CharField(max_length=1)
     resultado_equipo_a=models.IntegerField()
     resultado_equipo_b=models.IntegerField()
