@@ -7,6 +7,9 @@ class tipo_equipo(models.Model):
     descripcion=models.CharField(max_length=30)
     estado=models.BooleanField()
 
+    def __str__(self):
+        return self.descripcion
+
     class Meta:
         verbose_name_plural='tipo_equipo'
 
@@ -19,7 +22,9 @@ class equipo(models.Model):
     tipo_equipo_id=models.ForeignKey(tipo_equipo,on_delete=models.CASCADE,db_column='tipo_equipo_id')
     sede_id=models.ForeignKey("appPartido.sede",on_delete=models.CASCADE,db_column='sede_id')
     deporte_id=models.ForeignKey("appCompeticion.deporte",on_delete=models.CASCADE,db_column='deporte_id')
-    encuentro_id=models.ForeignKey("appPartido.encuentro",on_delete=models.CASCADE,db_column='encuentro_id')
+
+    def __str__(self):
+        return self.nombre
 
     class Meta:
         verbose_name_plural='equipo'
@@ -28,6 +33,9 @@ class posicion_jugador(models.Model):
     posicion_jugador_id=models.BigAutoField(primary_key=True)
     descripcion=models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.descripcion
+        
     class Meta:
         verbose_name_plural='posicion_jugador'
 
@@ -40,5 +48,8 @@ class alineacion_equipo(models.Model):
     estado=models.BooleanField()
     contrato_id=models.ForeignKey("appContrato.contrato",on_delete=models.CASCADE,db_column='contrato_id')
 
+    def __str__(self):
+        return str(self.alineacion_equipo_id)
+    
     class Meta:
-        verbose_name_plural='posicion_jugador'
+        verbose_name_plural='alineacion_equipo'

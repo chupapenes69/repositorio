@@ -13,14 +13,18 @@ class arbitro(models.Model):
     estado=models.BooleanField()
 
     def __str__(self):
-        return self.nombre
+        return str(self.nombre)
     
     class Meta:
         verbose_name_plural='arbitro'
+        
 
 class terma_arbitral(models.Model):
     terma_arbitral_id=models.BigAutoField(primary_key=True)
     estado=models.BooleanField()
+    
+    def __str__(self):
+        return str(self.terma_arbitral_id)
 
     class Meta:
         verbose_name_plural='terma_arbitral'
@@ -30,7 +34,10 @@ class detalle_terma(models.Model):
     terma_arbitral_id=models.ForeignKey(terma_arbitral,on_delete=models.CASCADE,db_column='tema_arbitral_id')
     arbitro_id=models.ForeignKey(arbitro,on_delete=models.CASCADE,db_column='arbitro_id')
     estado_jugo=models.BooleanField()
-    
+
+    def __str__(self):
+        return str(self.terma_arbitral_id)
+
     class Meta:
         verbose_name_plural='detalle_terma'
 

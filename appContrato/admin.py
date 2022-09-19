@@ -2,7 +2,15 @@ from django.contrib import admin
 from appContrato.models import *
 
 # Register your models here.
+class tipo_personaAdmin(admin.ModelAdmin):
+    list_display=['tipo_persona_id', 'descripcion', 'estado']
 
-admin.site.register(tipo_persona)
-admin.site.register(persona)
-admin.site.register(contrato)
+class personaAdmin(admin.ModelAdmin):
+    list_display=['persona_id', 'nombre', 'apellido', 'alias', 'sexo', 'fecha_nacimiento','pais_id','estatura','peso','estado','tipo_persona_id']
+
+class contratoAdmin(admin.ModelAdmin):
+    list_display=['contrato_id', 'fecha_inicio', 'fecha_fin', 'valor', 'tipo_contrato', 'estado', 'persona_id']
+
+admin.site.register(tipo_persona,tipo_personaAdmin)
+admin.site.register(persona,personaAdmin)
+admin.site.register(contrato,contratoAdmin)
