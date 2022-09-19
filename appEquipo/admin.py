@@ -8,6 +8,7 @@ class equipoAdmin(admin.ModelAdmin):
 
 class tipoEquipoAdmin(admin.ModelAdmin):
     list_display=['tipo_equipo_id','descripcion','estado']
+    ordering=['tipo_equipo_id']
 
 class posicionJugadorAdmin(admin.ModelAdmin):
     list_display=['posicion_jugador_id','descripcion']
