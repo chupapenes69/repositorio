@@ -21,10 +21,11 @@ class arbitro(models.Model):
 
 class terma_arbitral(models.Model):
     terma_arbitral_id=models.BigAutoField(primary_key=True)
+    nombre_terma=models.CharField(max_length=50)
     estado=models.BooleanField()
     
     def __str__(self):
-        return str(self.terma_arbitral_id)
+        return self.nombre_terma
 
     class Meta:
         verbose_name_plural='terma_arbitral'

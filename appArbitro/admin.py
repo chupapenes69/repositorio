@@ -7,7 +7,7 @@ class arbitroAdmin(admin.ModelAdmin):
     list_display=['arbitro_id','nombre','apellido','tipo_arbitro','estado']
 
 class temaArbitralAdmin(admin.ModelAdmin):
-    list_display=['terma_arbitral_id','estado']
+    list_display=['terma_arbitral_id','nombre_terma','estado']
 
 class detalleTermaArbitralAdmin(admin.ModelAdmin):
     list_display=['detalle_terma_id','terma_arbitral_id','arbitro_id','estado_jugo']

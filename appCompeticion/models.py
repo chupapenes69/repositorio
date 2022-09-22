@@ -2,6 +2,16 @@ from django.db import models
 
 # Create your models here.
 
+class pais(models.Model):
+    pais_id=models.BigAutoField(primary_key=True)
+    nombre=models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name_plural='pais'
+
 class tipo_competicion(models.Model):
     tipo_competicion_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=30)
@@ -16,7 +26,7 @@ class tipo_competicion(models.Model):
 class competicion(models.Model):
     competicion_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=50)
-    pais_id=models.IntegerField()
+    pais_id=models.ForeignKey(pais,on_delete=models.CASCADE, db_column='pais_id')
     tipo_competicion_id=models.ForeignKey(tipo_competicion,on_delete=models.CASCADE, db_column='tipo_competicion_id')
 
     def __str__(self):
@@ -24,16 +34,6 @@ class competicion(models.Model):
     
     class Meta:
         verbose_name_plural='competicion'
-        
-class pais(models.Model):
-    pais_id=models.BigAutoField(primary_key=True)
-    nombre=models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.nombre
-
-    class Meta:
-        verbose_name_plural='pais'
 
 class deporte(models.Model):
     deporte_id=models.BigAutoField(primary_key=True)

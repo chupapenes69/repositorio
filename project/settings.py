@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['127.0.0.1','localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_volt.apps.AdminVoltConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'es-eu'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -123,7 +124,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 MEDIA_URL='media/'
-STATICFILES_DIRS=[BASE_DIR / "assets/",]
+STATICFILES_DIRS=[BASE_DIR / "static/",]
 STATIC_ROOT='/home/virupqhv/calidad.virusgaming.gg/static'
 MEDIA_ROOT='/home/virupqhv/calidad.virusgaming.gg/media'
 
