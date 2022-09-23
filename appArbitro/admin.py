@@ -5,12 +5,15 @@ from appArbitro.models import *
 
 class arbitroAdmin(admin.ModelAdmin):
     list_display=['arbitro_id','nombre','apellido','tipo_arbitro','estado']
+    ordering=['arbitro_id']
 
 class temaArbitralAdmin(admin.ModelAdmin):
     list_display=['terma_arbitral_id','nombre_terma','estado']
+    ordering=['terma_arbitral_id']
 
 class detalleTermaArbitralAdmin(admin.ModelAdmin):
     list_display=['detalle_terma_id','terma_arbitral_id','arbitro_id','estado_jugo']
+    ordering=['detalle_terma_id']
 
 admin.site.register(arbitro,arbitroAdmin)
 admin.site.register(terma_arbitral,temaArbitralAdmin)

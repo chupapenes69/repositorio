@@ -15,8 +15,8 @@ class tipo_equipo(models.Model):
 
 class equipo(models.Model):
     equipo_id=models.BigAutoField(primary_key=True)
-    logo=models.BinaryField(max_length=None)
-    vestimenta=models.BinaryField()
+    logo=models.ImageField(null=True, blank=True, upload_to='equipo/logo/')
+    vestimenta=models.ImageField(null=True, blank=True, upload_to='equipo/vestimenta/')
     nombre=models.CharField(max_length=70)
     siglas=models.CharField(max_length=3)
     tipo_equipo_id=models.ForeignKey(tipo_equipo,on_delete=models.CASCADE,db_column='tipo_equipo_id')
