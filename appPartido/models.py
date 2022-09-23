@@ -45,7 +45,7 @@ class encuentro(models.Model):
     resultado_equipo_a=models.IntegerField()
     resultado_equipo_b=models.IntegerField()
     sede_id=models.ForeignKey(sede,on_delete=models.CASCADE,db_column='sede_id')
-    terma_arbitral_id=models.ForeignKey("appArbitro.terma_arbitral", on_delete=models.CASCADE,db_column='terma_arbitral_id')
+    terna_arbitral_id=models.ForeignKey("appArbitro.terna_arbitral", on_delete=models.CASCADE,db_column='terna_arbitral_id')
     fecha=models.DateField()
     humedad=models.IntegerField()
     clima=models.IntegerField()

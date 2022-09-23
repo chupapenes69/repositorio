@@ -15,11 +15,18 @@ class tipo_persona(models.Model):
 
 
 class persona(models.Model):
+
+    CHOICE_SEXO = [
+        ('M', 'Masculino'),
+        ('F', 'Femenino'),
+    ]
+
     persona_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=30)
     apellido=models.CharField(max_length=30)
     alias=models.CharField(max_length=20)
-    sexo=models.CharField(max_length=1)
+    # CHICE_SEXO | M = Masculino , F = Femenino
+    sexo=models.CharField(max_length=1,choices=CHOICE_SEXO, default='M')
     fecha_nacimiento=models.DateField()
     pais_id=models.ForeignKey("appCompeticion.pais",on_delete=models.CASCADE, db_column='pais_id')
     estatura=models.FloatField()
@@ -34,16 +41,28 @@ class persona(models.Model):
         verbose_name_plural='persona'
 
 class contrato(models.Model):
+
+    CHOICE_TIPO_CONTRATO = [
+        ('P','Prestamo'),
+        ('C','Compra'),
+        ('L','Libre'),
+        ('R','Renovacion'),
+        ('S','Seleccion'),
+    ]
+
     contrato_id=models.BigAutoField(primary_key=True)
     fecha_inicio=models.DateField()
     fecha_fin=models.DateField()
     valor=models.FloatField()
-    tipo_contrato=models.CharField(max_length=1)
-    estado=models.BooleanField()
+    # CHOICE_TIPO_CONTRATO | P = Prestamo , C = Compra , L = Libre , S = Seleccion , Renovacion
+    tipo_contrato=models.CharField(max_length=1, choices=CHOICE_TIPO_CONTRATO, default='C')
     persona_id=models.ForeignKey(persona,on_delete=models.CASCADE, db_column='persona_id')
+    ultimo_club=models.ForeignKey('appEquipo.equipo',on_delete=models.CASCADE,db_column='ultimo_club',related_name='ultimo_club',null=True,blank=True)
+    nuevo_club=models.ForeignKey('appEquipo.equipo',on_delete=models.CASCADE,db_column='nuevo_club',related_name='nuevo_club',null=True,blank=True)
+    estado=models.BooleanField()
 
     def __str__(self):
-        return str(self.tipo_contrato)
+        return str(self.persona_id)
 
     class Meta:
         verbose_name_plural='contrato'
