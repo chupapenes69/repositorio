@@ -315,22 +315,24 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush list my--3">
                         
+                        {% for u in usuarios %}
+                        
                         <li class="list-group-item px-0">
                             <div class="row align-items-center">
                                 <div class="col-auto">
                                     <!-- Avatar -->
                                     <a href="#" class="avatar">
                                         <img class="rounded" alt="Image placeholder"
-                                             src="{% static 'admin_volt/assets/img/team/profile-picture-1.jpg' %}">
+                                             src="{{u.get_avatar}}">
                                     </a>
                                 </div>
                                 <div class="col-auto ms--2">
                                     <h4 class="h6 mb-0">
-                                        <a href="#">Marco Padilla</a>
+                                        <a href="/admin/user/user/{{u.id}}">{{ u.first_name }} {{ u.last_name}}</a>
                                     </h4>
                                     <div class="d-flex align-items-center">
                                         <div class="bg-success dot rounded-circle me-1"></div>
-                                        <small>Online</small>
+                                        <small>{{u.get_rol_display}}</small>
                                     </div>
                                 </div>
                                 <div class="col text-end">
@@ -347,6 +349,7 @@
                                 </div>
                             </div>
                         </li>
+                        {% endfor %}
                         
                         
                         <!-- <li class="list-group-item px-0">
