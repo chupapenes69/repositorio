@@ -28,7 +28,7 @@ class persona(models.Model):
     # CHICE_SEXO | M = Masculino , F = Femenino
     sexo=models.CharField(max_length=1,choices=CHOICE_SEXO, default='M')
     fecha_nacimiento=models.DateField()
-    pais_id=models.ForeignKey("appCompeticion.pais",on_delete=models.CASCADE, db_column='pais_id')
+    ciudad_id=models.ForeignKey("appPartido.ciudad",on_delete=models.CASCADE, db_column='ciudad_id')
     estatura=models.FloatField()
     peso=models.FloatField()
     estado=models.BooleanField()
