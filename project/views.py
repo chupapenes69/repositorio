@@ -20,3 +20,9 @@ def contadoresAdmin(request):
     }
     return render(request, 'admin/index.html', data)
 
+def index(request):
+    data={
+        
+    }
+    return render(request, 'index.html', data)
+
