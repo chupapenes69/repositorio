@@ -25,8 +25,10 @@ class ciudad(models.Model):
 
 class sede(models.Model):
     sede_id=models.BigAutoField(primary_key=True)
-    nombre=models.CharField(max_length=30)
+    nombre=models.CharField(max_length=50)
+    alias=models.CharField(max_length=50)
     capacidad=models.IntegerField()
+    fecha_inauguracion=models.DateField()
     ciudad_id=models.ForeignKey(ciudad, on_delete=models.CASCADE,db_column='ciudad_id')
     estado_id=models.ForeignKey(estado, on_delete=models.CASCADE,db_column='estado_id')
     pais_id=models.ForeignKey("appCompeticion.pais",on_delete=models.CASCADE,db_column='pais_id')

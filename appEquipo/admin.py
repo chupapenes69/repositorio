@@ -4,7 +4,7 @@ from appEquipo.models import *
 # Register your models here.
 
 class equipoAdmin(admin.ModelAdmin):
-    list_display=['equipo_id','logo','vestimenta','nombre','siglas','tipo_equipo_id','sede_id','deporte_id']
+    list_display=['equipo_id','logo','vestimenta','nombre','siglas','categoria_equipo','tipo_equipo_id','sede_id','deporte_id']
     ordering=['equipo_id']
     search_fields = ['nombre']
 

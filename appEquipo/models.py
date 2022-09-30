@@ -2,6 +2,17 @@ from django.db import models
 
 # Create your models here.
 
+class categoria_equipo(models.Model):
+    categoria_id=models.BigAutoField(primary_key=True)
+    nombre=models.CharField(max_length=30)
+    
+    def __str__(self):
+        return self.nombre
+    
+    class Meta:
+        verbose_name_plural= 'categoria_equipo'
+
+
 class tipo_equipo(models.Model):
     tipo_equipo_id=models.BigAutoField(primary_key=True)
     descripcion=models.CharField(max_length=30)
@@ -18,6 +29,7 @@ class equipo(models.Model):
     vestimenta=models.ImageField(null=True, blank=True, upload_to='equipo/vestimenta/')
     nombre=models.CharField(max_length=70)
     siglas=models.CharField(max_length=3)
+    categoria_equipo=models.ForeignKey(categoria_equipo,on_delete=models.CASCADE,db_column='categoria_equipo')
     tipo_equipo_id=models.ForeignKey(tipo_equipo,on_delete=models.CASCADE,db_column='tipo_equipo_id')
     sede_id=models.ForeignKey("appPartido.sede",on_delete=models.CASCADE,db_column='sede_id')
     deporte_id=models.ForeignKey("appCompeticion.deporte",on_delete=models.CASCADE,db_column='deporte_id')
