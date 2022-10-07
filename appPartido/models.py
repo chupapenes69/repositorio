@@ -1,6 +1,17 @@
+from email.policy import default
 from django.db import models
 
 # Create your models here.
+
+class formacion(models.Model):
+    formacion_id=models.BigAutoField(primary_key=True)
+    descripcion=models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.descripcion
+    
+    class Meta:
+        verbose_name_plural='formacion'
 
 class estado(models.Model):
     estado_id=models.BigAutoField(primary_key=True)
@@ -41,11 +52,6 @@ class sede(models.Model):
 
 class encuentro(models.Model):
     encuentro_id=models.BigAutoField(primary_key=True)
-    equipo_local_id=models.ForeignKey("appEquipo.equipo", on_delete=models.CASCADE, related_name='equipo_local_id', db_column='equipo_local_id')
-    equipo_visitante_id=models.ForeignKey("appEquipo.equipo", on_delete=models.CASCADE, related_name='equipo_visitante_id', db_column='equipo_visitante_id')
-    resultado_general=models.CharField(max_length=1)
-    resultado_equipo_a=models.IntegerField()
-    resultado_equipo_b=models.IntegerField()
     sede_id=models.ForeignKey(sede,on_delete=models.CASCADE,db_column='sede_id')
     terna_arbitral_id=models.ForeignKey("appArbitro.terna_arbitral", on_delete=models.CASCADE,db_column='terna_arbitral_id')
     fecha=models.DateField()
@@ -56,10 +62,29 @@ class encuentro(models.Model):
     def __str__(self):
         return str(self.encuentro_id)
     
-
     class Meta:
         verbose_name_plural='encuentro'
 
+class detalle_encuentro(models.Model):
+    CHOICE_TIPO_EQUIPO= [
+        ('L','LOCAL'),
+        ('V','VISITA'),
+    ]
+
+    detalle_encuentro_id=models.BigAutoField(primary_key=True)
+    encuentro_id=models.ForeignKey('encuentro',on_delete=models.CASCADE,db_column='encuentro_id')
+    equipo_id=models.ForeignKey('appEquipo.equipo', on_delete=models.CASCADE,db_column='equipo_id')
+    formacion_id=models.ForeignKey('formacion',on_delete=models.CASCADE,db_column='formacion_id')
+    # CHOICE_TIPO_EQUIPO | L = LOCAL | V = VISITA
+    tipo_equipo=models.CharField(max_length=1,choices=CHOICE_TIPO_EQUIPO)
+    resultado=models.CharField(max_length=3)
+
+    def __str__(self):
+        return str(self.detalle_encuentro_id)
+
+    class Meta:
+        verbose_name_plural='detalle_encuentro'
+    
 class evento(models.Model):
     evento_id=models.BigAutoField(primary_key=True)
     descripcion=models.CharField(max_length=30)
@@ -72,11 +97,20 @@ class evento(models.Model):
         verbose_name_plural='evento'
 
 class evento_persona(models.Model):
+    CHOICE_TIPO_SUCESO= [
+        ('E','ENTRADA'),
+        ('S','SALIDA'),
+    ]
+
     encuentro_evento_id=models.BigAutoField(primary_key=True)
     encuentro_id=models.ForeignKey(encuentro,on_delete=models.CASCADE,db_column='encuentro_id')
     evento_id=models.ForeignKey(evento,on_delete=models.CASCADE,db_column='evento_id')
     persona_id=models.ForeignKey("appContrato.persona",on_delete=models.CASCADE,db_column='persona_id')
+    suceso=models.CharField(max_length=5,default='ABC')
+    # CHOICE_TIPO_SUCESO | E = ENTRADA , S = SALIDA
+    tipo_suceso=models.CharField(max_length=1,choices=CHOICE_TIPO_SUCESO,blank=True,null=True)   
     tiempo=models.IntegerField()
+    observacion=models.CharField(max_length=50,blank=True,null=True)
 
     def __str__(self):
         return str(self.encuentro_evento_id)
