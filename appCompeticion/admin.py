@@ -13,7 +13,7 @@ class competicionAdmin(admin.ModelAdmin):
     search_fields = ['nombre']
 
 class paisAdmin(admin.ModelAdmin):
-    list_display=['pais_id','nombre']
+    list_display=['pais_id','nombre','sigla']
     ordering=['pais_id']
     search_fields = ['nombre']
 

@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 
 # Create your models here.
@@ -5,6 +6,7 @@ from django.db import models
 class pais(models.Model):
     pais_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=30)
+    sigla=models.CharField(max_length=3,default='')
 
     def __str__(self):
         return self.nombre

@@ -6,10 +6,10 @@ from django.db import models
 class arbitro(models.Model):
 
     CHOICE_TIPO_ARBITRO = [
-        ('P','Principal'),
-        ('J','Juez de Linea'),
-        ('C','Cuarto Hombre'),
-        ('V','Var'),
+        ('P','PRINCIPAL'),
+        ('J','JUEZ DE LINEA'),
+        ('C','CUARTO HOMBRE'),
+        ('V','VAR'),
     ]
 
     arbitro_id=models.BigAutoField(primary_key=True)

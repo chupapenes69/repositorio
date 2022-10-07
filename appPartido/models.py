@@ -1,4 +1,5 @@
 from email.policy import default
+from random import choices
 from django.db import models
 
 # Create your models here.
@@ -27,6 +28,7 @@ class ciudad(models.Model):
     ciudad_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=30)
     norma=models.CharField(max_length=5)
+    pais_id=models.ForeignKey('appCompeticion.pais',on_delete=models.CASCADE,db_column='pais_id')
 
     def __str__(self):
         return self.nombre
@@ -35,14 +37,21 @@ class ciudad(models.Model):
         verbose_name_plural='ciudad'
 
 class sede(models.Model):
+    CHOICE_ESTADO_SEDE=[
+        ('SD','SUSPENDIDO DEFINITIVAMENTE'),
+        ('DI','DISPONIBLE'),
+        ('EM','EN MANTENIMIENTO'),
+        ('ND','NO DISPONIBLE'),
+        ('ST','SUSPENDIDO TEMPORALMENTE')
+    ]
     sede_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=50)
     alias=models.CharField(max_length=50)
     capacidad=models.IntegerField()
     fecha_inauguracion=models.DateField()
     ciudad_id=models.ForeignKey(ciudad, on_delete=models.CASCADE,db_column='ciudad_id')
-    estado_id=models.ForeignKey(estado, on_delete=models.CASCADE,db_column='estado_id')
-    pais_id=models.ForeignKey("appCompeticion.pais",on_delete=models.CASCADE,db_column='pais_id')
+    # CHOICE_ESTADO_SEDE| SD= SUSPENDIDO TEMPORALMENTE, DI= DISPONIBLE , EM = EN MANTENIMIENTO, ND = NO DISPONIBLE, ST = SUSPENDIDO TEMPORALMENTE
+    estado=models.CharField(max_length=2,default='DI',choices=CHOICE_ESTADO_SEDE)
 
     def __str__(self):
         return self.nombre
@@ -55,8 +64,8 @@ class encuentro(models.Model):
     sede_id=models.ForeignKey(sede,on_delete=models.CASCADE,db_column='sede_id')
     terna_arbitral_id=models.ForeignKey("appArbitro.terna_arbitral", on_delete=models.CASCADE,db_column='terna_arbitral_id')
     fecha=models.DateField()
-    humedad=models.IntegerField()
-    clima=models.IntegerField()
+    humedad=models.CharField(max_length=4)
+    clima=models.CharField(max_length=4)
     estado_jugado=models.BooleanField()
 
     def __str__(self):

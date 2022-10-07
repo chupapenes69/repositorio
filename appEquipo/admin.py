@@ -3,8 +3,13 @@ from appEquipo.models import *
 
 # Register your models here.
 
+class categoriaEquipo(admin.ModelAdmin):
+    list_display=['categoria_id','nombre']
+    ordering=['categoria_id']
+    search_fields=['noxmbre']
+
 class equipoAdmin(admin.ModelAdmin):
-    list_display=['equipo_id','logo','vestimenta','nombre','siglas','categoria_equipo','tipo_equipo_id','sede_id','deporte_id']
+    list_display=['equipo_id','logo','vestimenta_principal','vestimenta_alterna','nombre','siglas','categoria_equipo','tipo_equipo_id','sede_id','deporte_id']
     ordering=['equipo_id']
     search_fields = ['nombre']
 
@@ -23,6 +28,7 @@ class AlineacionEquipoAdmin(admin.ModelAdmin):
     ordering=['alineacion_equipo_id']
     search_fields = ['equipo_id']
 
+admin.site.register(categoria_equipo,categoriaEquipo)
 admin.site.register(tipo_equipo,tipoEquipoAdmin)
 admin.site.register(equipo,equipoAdmin)
 admin.site.register(posicion_jugador,posicionJugadorAdmin)
