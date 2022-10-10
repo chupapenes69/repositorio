@@ -4,7 +4,7 @@ from appArbitro.models import *
 # Register your models here.
 
 class arbitroAdmin(admin.ModelAdmin):
-    list_display=['arbitro_id','nombre','apellido','tipo_arbitro','estado']
+    list_display=['arbitro_id','nombre','apellido','tipo_arbitro','pais_id','estado']
     ordering=['arbitro_id']
     search_fields = ['nombre','apellido']
 
