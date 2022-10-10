@@ -19,7 +19,7 @@ class ternaArbitralAdmin(admin.ModelAdmin):
     search_fields = ['nombre_terna']
 
 class detalleTernaArbitralAdmin(admin.ModelAdmin):
-    list_display=['detalle_terna_id','terna_arbitral_id','arbitro_id','estado_juego']
+    list_display=['detalle_terna_id','terna_arbitral_id','arbitro_id','tipo_terna_id','estado_juego']
     ordering=['detalle_terna_id']
     search_fields = ['terna_arbitral_id','arbitro_id']
 

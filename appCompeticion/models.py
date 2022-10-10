@@ -25,28 +25,33 @@ class tipo_competicion(models.Model):
     class Meta:
         verbose_name_plural='tipo_competicion'
 
-class competicion(models.Model):
-    competicion_id=models.BigAutoField(primary_key=True)
-    nombre=models.CharField(max_length=50)
-    pais_id=models.ForeignKey(pais,on_delete=models.CASCADE, db_column='pais_id')
-    tipo_competicion_id=models.ForeignKey(tipo_competicion,on_delete=models.CASCADE, db_column='tipo_competicion_id')
-
-    def __str__(self):
-        return self.nombre
-    
-    class Meta:
-        verbose_name_plural='competicion'
-
 class deporte(models.Model):
     deporte_id=models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=30)
     estado=models.BooleanField()
 
     def __str__(self):
-        return self.nombre
+        return self.deporte_id
         
     class Meta: 
         verbose_name_plural='deporte'
+
+
+class competicion(models.Model):
+    competicion_id=models.BigAutoField(primary_key=True)
+    nombre=models.CharField(max_length=50)
+    pais_id=models.ForeignKey(pais,on_delete=models.CASCADE, db_column='pais_id')
+    tipo_competicion_id=models.ForeignKey(tipo_competicion,on_delete=models.CASCADE, db_column='tipo_competicion_id')
+    deporte_id=models.ForeignKey(deporte,on_delete=models.CASCADE, db_column='deporte_id')
+    estado=models.BooleanField()
+    fecha_inicio=models.DateField(blank=True,null=True,default='1990-12-12')
+    fecha_fin=models.DateField(blank=True,null=True,default='1990-12-12')
+
+    def __str__(self):
+        return self.nombre
+    
+    class Meta:
+        verbose_name_plural='competicion'
 
 class grupo(models.Model):
     grupo_id=models.BigAutoField(primary_key=True)
